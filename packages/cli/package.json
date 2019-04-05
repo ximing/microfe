@@ -20,6 +20,9 @@
     "build": "npm run tsc",
     "i": "SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install --registry=https://registry.npm.taobao.org"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@babel/preset-typescript": "^7.3.3",
     "@commitlint/cli": "^7.5.1",
@@ -104,5 +107,6 @@
     "webpack-manifest-plugin": "^2.0.4",
     "webpack-merge": "^4.2.1",
     "worker-loader": "^2.0.0"
-  }
+  },
+  "gitHead": "b03049e431d3843cef720ab182b2f0eae5fd4756"
 }
