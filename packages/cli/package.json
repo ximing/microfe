@@ -1,6 +1,6 @@
 {
   "name": "@microfe/cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "> TODO: description",
   "author": "ximing <807754634@qq.com>",
   "homepage": "",
@@ -43,7 +43,6 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -e $GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
   },
