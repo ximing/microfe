@@ -28,7 +28,11 @@ module.exports = ({
                 exclude: /(node_modules)/,
                 use: {
                     loader: 'babel-loader',
-                    options: babel
+                    options: Object.assign({},{
+                        babelrc: false,
+                        configFile: false,
+                        compact: false,
+                    },babel)
                 }
             },
             {

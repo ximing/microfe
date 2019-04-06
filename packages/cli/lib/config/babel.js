@@ -1,8 +1,8 @@
 module.exports = {
     "presets": [
-        "@babel/react",
+        require("@babel/react").default,
         [
-            "@babel/preset-env",
+            require('@babel/preset-env').default,
             {
                 "targets": {
                     "browsers": [
@@ -20,7 +20,7 @@ module.exports = {
                 "forceAllTransforms": false
             }
         ],
-        ["@babel/preset-typescript",{
+        [require("@babel/preset-typescript").default,{
             isTSX:true
         }]
     ],
@@ -29,38 +29,38 @@ module.exports = {
         "dist"
     ],
     "plugins": [
-        ["import", {
+        [require("babel-plugin-import").default, {
             "libraryName": "antd",
             "style": true
         }],
-        "@babel/plugin-syntax-optional-chaining",
-        "@babel/plugin-proposal-object-rest-spread",
-        "@babel/plugin-transform-runtime",
-        "@babel/plugin-syntax-dynamic-import",
-        "@babel/plugin-syntax-import-meta",
-        "@babel/plugin-proposal-class-properties",
-        "@babel/plugin-proposal-json-strings",
+        require("@babel/plugin-syntax-optional-chaining").default,
+        require("@babel/plugin-proposal-object-rest-spread").default,
+        require("@babel/plugin-transform-runtime").default,
+        require("@babel/plugin-syntax-dynamic-import").default,
+        require("@babel/plugin-syntax-import-meta").default,
+        require("@babel/plugin-proposal-class-properties").default,
+        require("@babel/plugin-proposal-json-strings").default,
         [
-            "@babel/plugin-proposal-decorators",
+            require("@babel/plugin-proposal-decorators").default,
             {
                 "legacy": true
             }
         ],
-        "@babel/plugin-proposal-function-sent",
-        "@babel/plugin-proposal-export-namespace-from",
-        "@babel/plugin-proposal-numeric-separator",
-        "@babel/plugin-proposal-throw-expressions",
-        "@babel/plugin-proposal-export-default-from",
-        "@babel/plugin-proposal-logical-assignment-operators",
-        "@babel/plugin-proposal-optional-chaining",
+        require("@babel/plugin-proposal-function-sent").default,
+        require("@babel/plugin-proposal-export-namespace-from").default,
+        require("@babel/plugin-proposal-numeric-separator").default,
+        require("@babel/plugin-proposal-throw-expressions").default,
+        require("@babel/plugin-proposal-export-default-from").default,
+        require("@babel/plugin-proposal-logical-assignment-operators").default,
+        require("@babel/plugin-proposal-optional-chaining").default,
         [
-            "@babel/plugin-proposal-pipeline-operator",
+            require("@babel/plugin-proposal-pipeline-operator").default,
             {
                 "proposal": "minimal"
             }
         ],
-        "@babel/plugin-proposal-nullish-coalescing-operator",
-        "@babel/plugin-proposal-do-expressions",
-        "@babel/plugin-proposal-function-bind"
+        require("@babel/plugin-proposal-nullish-coalescing-operator").default,
+        require("@babel/plugin-proposal-do-expressions").default,
+        require("@babel/plugin-proposal-function-bind").default
     ]
 }
