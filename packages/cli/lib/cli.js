@@ -43,7 +43,11 @@ try {
 }
 
 function cli() {
-    let customConfig = Object.assign({}, defaultConfig, config);
+    let customConfig = Object.assign({}, defaultConfig, config,{
+        dev:Object.assign({},defaultConfig.dev,config.dev)
+    },{
+        build:Object.assign({},defaultConfig.build,config.build)
+    });
     customConfig.entry = path.resolve(process.cwd(), customConfig.entry);
     if (typeof customConfig.entry === 'string') {
         customConfig.entry = {
