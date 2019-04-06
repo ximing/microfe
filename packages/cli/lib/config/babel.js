@@ -1,6 +1,6 @@
 module.exports = {
     "presets": [
-        require("@babel/react").default,
+        require("@babel/preset-react").default,
         [
             require('@babel/preset-env').default,
             {
@@ -21,7 +21,8 @@ module.exports = {
             }
         ],
         [require("@babel/preset-typescript").default,{
-            isTSX:true
+            isTSX:true,
+            allExtensions:true
         }]
     ],
     "ignore": [
