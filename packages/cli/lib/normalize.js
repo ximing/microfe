@@ -1,6 +1,9 @@
+const path = require ('path');
+
 let defaultConfig = {
   dev: {
     port: 9001,
+    host: '127.0.0.1',
     output: path.join (process.cwd (), 'lib'),
   },
   build: {

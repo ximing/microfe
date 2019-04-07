@@ -6,7 +6,7 @@ const path = require ('path');
 const webpackMmerge = require ('webpack-merge');
 const common = require ('./webpack.common.config');
 
-module.exports = ({port, entry, library, externals, output, themer}) => {
+module.exports = ({port, host, entry, library, externals, output, themer}) => {
   let outputObj = {};
   if (typeof output === 'string') {
     outputObj = {
@@ -14,7 +14,7 @@ module.exports = ({port, entry, library, externals, output, themer}) => {
       library: library,
       libraryTarget: 'amd',
       filename: `${library}.js`,
-      publicPath: `http://127.0.0.1:${port}/`,
+      publicPath: `http://${host}:${port}/`,
     };
   } else {
     outputObj = output;
@@ -45,7 +45,7 @@ module.exports = ({port, entry, library, externals, output, themer}) => {
         https: false, // true for self-signed, object for cert authority
         noInfo: false, // only errors & warns on hot reload
         port,
-        host: '0.0.0.0',
+        host,
         disableHostCheck: true,
         headers: {
           'Access-Control-Allow-Origin': '*',

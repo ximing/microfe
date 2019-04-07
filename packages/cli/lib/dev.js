@@ -10,15 +10,19 @@ module.exports = function (opts) {
   const compiler = webpack (devConfig);
   const devServer = new WebpackDevServer (compiler, devConfig.devServer);
   format (compiler);
-  devServer.listen (opts.port, devConfig.devServer.host, err => {
+  devServer.listen (opts.port, opts.host, err => {
     if (err) {
       return console.log (err);
     }
-    console.log (chalk.cyan ('Starting the development server...\n'));
+    console.log (
+      chalk.cyan ('Starting the development server...'),
+      chalk.blue (`http://${opts.host}:${opts.port}`)
+    );
   });
 
   ['SIGINT', 'SIGTERM'].forEach (function (sig) {
     process.on (sig, function () {
+      console.log (chalk.red ('close dev server'));
       devServer.close ();
       process.exit ();
     });
