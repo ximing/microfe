@@ -1,112 +1,114 @@
 {
-  "name": "@microfe/cli",
-  "version": "0.0.5",
-  "description": "> TODO: description",
-  "author": "ximing <807754634@qq.com>",
-  "homepage": "",
-  "license": "ISC",
-  "main": "lib/cli.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "bin": {
-    "microfe": "lib/cli.js"
-  },
-  "files": [
-    "lib"
-  ],
-  "scripts": {
-    "build": "npm run tsc",
-    "i": "SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install --registry=https://registry.npm.taobao.org"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "devDependencies": {
-    "@babel/preset-typescript": "^7.3.3",
-    "@commitlint/cli": "^7.5.1",
-    "@commitlint/config-conventional": "^7.5.0",
-    "eslint": "^5.13.0",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-config-prettier": "^4.0.0",
-    "eslint-html-reporter": "^0.5.2",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^3.0.1",
-    "glob": "^7.1.3",
-    "husky": "^1.3.1",
-    "jest": "^24.1.0",
-    "lint-staged": "^8.1.3",
-    "nyc": "^13.2.0",
-    "prettier": "^1.16.4",
-    "standard-version": "^4.4.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.js": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "dependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/plugin-external-helpers": "^7.2.0",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-proposal-decorators": "^7.1.2",
-    "@babel/plugin-proposal-do-expressions": "^7.2.0",
-    "@babel/plugin-proposal-export-default-from": "^7.2.0",
-    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
-    "@babel/plugin-proposal-function-bind": "^7.2.0",
-    "@babel/plugin-proposal-function-sent": "^7.2.0",
-    "@babel/plugin-proposal-json-strings": "^7.2.0",
-    "@babel/plugin-proposal-logical-assignment-operators": "^7.2.0",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.2.0",
-    "@babel/plugin-proposal-numeric-separator": "^7.2.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
-    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
-    "@babel/plugin-proposal-pipeline-operator": "^7.3.2",
-    "@babel/plugin-proposal-throw-expressions": "^7.2.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/plugin-syntax-import-meta": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.2.0",
-    "@babel/preset-env": "^7.3.1",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.0.0",
-    "@babel/runtime": "^7.0.0",
-    "autoprefixer": "^9.4.7",
-    "babel-loader": "^8.0.5",
-    "babel-plugin-import": "^1.8.0",
-    "babel-plugin-module-resolver": "^3.1.3",
-    "babel-plugin-transform-decorators-legacy": "^1.3.5",
-    "clean-webpack-plugin": "^1.0.1",
-    "css-loader": "^2.1.0",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "html-webpack-template": "^6.2.0",
-    "less": "^3.9.0",
-    "less-loader": "^4.1.0",
-    "less-vars-to-js": "^1.3.0",
-    "mini-css-extract-plugin": "^0.5.0",
-    "postcss": "^7.0.14",
-    "postcss-clearfix": "^2.0.1",
-    "postcss-loader": "^3.0.0",
-    "react-hot-loader": "^4.8.2",
-    "style-loader": "^0.23.1",
-    "url-loader": "^1.0.1",
-    "webpack": "^4.29.3",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.14",
-    "webpack-format-messages": "^2.0.5",
-    "webpack-manifest-plugin": "^2.0.4",
-    "webpack-merge": "^4.2.1",
-    "worker-loader": "^2.0.0"
-  },
-  "gitHead": "b03049e431d3843cef720ab182b2f0eae5fd4756"
+    "name": "@microfe/cli",
+    "version": "0.0.5",
+    "description": "> TODO: description",
+    "author": "ximing <807754634@qq.com>",
+    "homepage": "",
+    "license": "ISC",
+    "main": "lib/cli.js",
+    "directories": {
+        "lib": "lib",
+        "test": "__tests__"
+    },
+    "bin": {
+        "microfe": "bin/microfe.js",
+        "microfe-build": "bin/microfe-build.js",
+        "microfe-dev": "bin/microfe-dev.js"
+    },
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "build": "npm run tsc",
+        "i": "SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install --registry=https://registry.npm.taobao.org"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "devDependencies": {
+        "@babel/preset-typescript": "^7.3.3",
+        "@commitlint/cli": "^7.5.1",
+        "@commitlint/config-conventional": "^7.5.0",
+        "eslint": "^5.13.0",
+        "eslint-config-airbnb": "^17.0.0",
+        "eslint-config-prettier": "^4.0.0",
+        "eslint-html-reporter": "^0.5.2",
+        "eslint-plugin-import": "^2.16.0",
+        "eslint-plugin-jsx-a11y": "^6.2.1",
+        "eslint-plugin-react": "^7.12.4",
+        "extract-text-webpack-plugin": "^3.0.2",
+        "file-loader": "^3.0.1",
+        "glob": "^7.1.3",
+        "husky": "^1.3.1",
+        "jest": "^24.1.0",
+        "lint-staged": "^8.1.3",
+        "nyc": "^13.2.0",
+        "prettier": "^1.16.4",
+        "standard-version": "^4.4.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "src/**/*.js": [
+            "prettier --write",
+            "git add"
+        ]
+    },
+    "dependencies": {
+        "@babel/core": "^7.2.2",
+        "@babel/plugin-external-helpers": "^7.2.0",
+        "@babel/plugin-proposal-class-properties": "^7.1.0",
+        "@babel/plugin-proposal-decorators": "^7.1.2",
+        "@babel/plugin-proposal-do-expressions": "^7.2.0",
+        "@babel/plugin-proposal-export-default-from": "^7.2.0",
+        "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+        "@babel/plugin-proposal-function-bind": "^7.2.0",
+        "@babel/plugin-proposal-function-sent": "^7.2.0",
+        "@babel/plugin-proposal-json-strings": "^7.2.0",
+        "@babel/plugin-proposal-logical-assignment-operators": "^7.2.0",
+        "@babel/plugin-proposal-nullish-coalescing-operator": "^7.2.0",
+        "@babel/plugin-proposal-numeric-separator": "^7.2.0",
+        "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
+        "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+        "@babel/plugin-proposal-pipeline-operator": "^7.3.2",
+        "@babel/plugin-proposal-throw-expressions": "^7.2.0",
+        "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+        "@babel/plugin-syntax-import-meta": "^7.2.0",
+        "@babel/plugin-transform-runtime": "^7.2.0",
+        "@babel/preset-env": "^7.3.1",
+        "@babel/preset-react": "^7.0.0",
+        "@babel/register": "^7.0.0",
+        "@babel/runtime": "^7.0.0",
+        "autoprefixer": "^9.4.7",
+        "babel-loader": "^8.0.5",
+        "babel-plugin-import": "^1.8.0",
+        "babel-plugin-module-resolver": "^3.1.3",
+        "babel-plugin-transform-decorators-legacy": "^1.3.5",
+        "clean-webpack-plugin": "^1.0.1",
+        "css-loader": "^2.1.0",
+        "html-loader": "^0.5.5",
+        "html-webpack-plugin": "^3.2.0",
+        "html-webpack-template": "^6.2.0",
+        "less": "^3.9.0",
+        "less-loader": "^4.1.0",
+        "less-vars-to-js": "^1.3.0",
+        "mini-css-extract-plugin": "^0.5.0",
+        "postcss": "^7.0.14",
+        "postcss-clearfix": "^2.0.1",
+        "postcss-loader": "^3.0.0",
+        "react-hot-loader": "^4.8.2",
+        "style-loader": "^0.23.1",
+        "url-loader": "^1.0.1",
+        "webpack": "^4.29.3",
+        "webpack-cli": "^3.2.3",
+        "webpack-dev-server": "^3.1.14",
+        "webpack-format-messages": "^2.0.5",
+        "webpack-manifest-plugin": "^2.0.4",
+        "webpack-merge": "^4.2.1",
+        "worker-loader": "^2.0.0"
+    },
+    "gitHead": "b03049e431d3843cef720ab182b2f0eae5fd4756"
 }
