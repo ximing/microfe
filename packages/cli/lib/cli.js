@@ -39,7 +39,11 @@ configPath = path.resolve(process.cwd(), configPath);
 try {
     config = require(configPath);
 } catch (e) {
-    console.warn(`没有找到自定义config: ${configPath},使用默认配置`)
+    try {
+        config = require(path.resolve(process.cwd(), 'microfe.js'));
+    }catch (e) {
+        console.warn(`没有找到自定义config: ${configPath},使用默认配置`)
+    }
 }
 
 function cli() {
