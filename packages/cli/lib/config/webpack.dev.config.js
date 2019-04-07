@@ -2,58 +2,58 @@
  * Created by ximing on 2018/8/3.
  */
 'use strict';
-const path = require ('path');
-const webpackMmerge = require ('webpack-merge');
-const common = require ('./webpack.common.config');
+const path = require('path');
+const webpackMmerge = require('webpack-merge');
+const common = require('./webpack.common.config');
 
-module.exports = ({port, host, entry, library, externals, output, themer}) => {
-  let outputObj = {};
-  if (typeof output === 'string') {
-    outputObj = {
-      path: output,
-      library: library,
-      libraryTarget: 'amd',
-      filename: `${library}.js`,
-      publicPath: `http://${host}:${port}/`,
-    };
-  } else {
-    outputObj = output;
-  }
-  return webpackMmerge (
-    common ({
-      externals,
-      devMode: true,
-      themer,
-      outputObj,
-    }),
-    {
-      mode: 'development',
-      entry,
-      output: outputObj,
-      module: {
-        rules: [],
-      },
-      devtool: 'cheap-module-eval-source-map',
-      context: __dirname,
-      target: 'web',
-      devServer: {
-        proxy: {},
-        contentBase: path.join (__dirname, 'public'), // boolean | string | array, static file location
-        compress: false, // enable gzip compression
-        historyApiFallback: true, // true for index.html upon 404, object for multiple paths
-        hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
-        https: false, // true for self-signed, object for cert authority
-        noInfo: false, // only errors & warns on hot reload
-        port,
-        host,
-        disableHostCheck: true,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-          'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
-        },
-      },
-      plugins: [],
+module.exports = ({ port, host, entry, library, externals, output, themer, devtool }) => {
+    let outputObj = {};
+    if (typeof output === 'string') {
+        outputObj = {
+            path: output,
+            library: library,
+            libraryTarget: 'amd',
+            filename: `${library}.js`,
+            publicPath: `http://${host}:${port}/`
+        };
+    } else {
+        outputObj = output;
     }
-  );
+    return webpackMmerge(
+        common({
+            externals,
+            devMode: true,
+            themer,
+            outputObj,
+            devtool
+        }),
+        {
+            mode: 'development',
+            entry,
+            output: outputObj,
+            module: {
+                rules: []
+            },
+            context: __dirname,
+            target: 'web',
+            devServer: {
+                proxy: {},
+                contentBase: path.join(__dirname, 'public'), // boolean | string | array, static file location
+                compress: false, // enable gzip compression
+                historyApiFallback: true, // true for index.html upon 404, object for multiple paths
+                hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
+                https: false, // true for self-signed, object for cert authority
+                noInfo: false, // only errors & warns on hot reload
+                port,
+                host,
+                disableHostCheck: true,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+                    'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+                }
+            },
+            plugins: []
+        }
+    );
 };
