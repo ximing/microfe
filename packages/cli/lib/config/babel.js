@@ -28,6 +28,12 @@ module.exports = {
                 style: true
             }
         ],
+        [
+            require('@babel/plugin-proposal-decorators').default,
+            {
+                legacy: true
+            }
+        ],
         require('@babel/plugin-syntax-optional-chaining').default,
         require('@babel/plugin-proposal-object-rest-spread').default,
         require('@babel/plugin-transform-runtime').default,
@@ -35,12 +41,6 @@ module.exports = {
         require('@babel/plugin-syntax-import-meta').default,
         require('@babel/plugin-proposal-class-properties').default,
         require('@babel/plugin-proposal-json-strings').default,
-        [
-            require('@babel/plugin-proposal-decorators').default,
-            {
-                legacy: true
-            }
-        ],
         require('@babel/plugin-proposal-function-sent').default,
         require('@babel/plugin-proposal-export-namespace-from').default,
         require('@babel/plugin-proposal-numeric-separator').default,
