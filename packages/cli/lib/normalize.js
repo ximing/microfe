@@ -13,6 +13,9 @@ let defaultConfig = {
     devtool: 'cheap-module-eval-source-map',
     entry: './src/index',
     library: 'demo',
+    resolve:{
+        extensions: ['.tsx', '.ts', '.js', '.jsx', '.json']
+    },
     externals: [
         /^lodash$/,
         /^jquery$/,

@@ -23,7 +23,8 @@ module.exports = ({
     devMode = false,
     themer = {},
     output,
-    devtool
+    devtool,
+                      resolve
 } = {}) => {
     let cleanDist = output;
     if (typeof output !== 'string') {
@@ -111,9 +112,7 @@ module.exports = ({
                 }
             ]
         },
-        resolve: {
-            extensions: ['.tsx', '.ts', '.js', '.jsx', '.json']
-        },
+        resolve,
         node: {
             fs: 'empty'
         },
