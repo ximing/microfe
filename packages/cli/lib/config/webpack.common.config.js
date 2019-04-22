@@ -4,10 +4,16 @@
 'use strict';
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let env = process.env.NODE_ENV || 'development';
 const babel = require('./babel');
 const postcss = require('./postcss');
+const varToSass = function(themes){
+    return Object.keys(themes).reduce(function(pre,key) {
+        pre += `$${key}:${themes[key]};`;
+        return pre;
+    },'')
+}
 
 module.exports = ({
     externals = [
@@ -24,13 +30,13 @@ module.exports = ({
     themer = {},
     output,
     devtool,
-                      resolve
+    resolve
 } = {}) => {
     let cleanDist = output;
     if (typeof output !== 'string') {
         cleanDist = output.path;
     }
-    console.log('cleanDist', cleanDist);
+    console.log('cleanDist', cleanDist,varToSass(themer));
     return {
         devtool,
         module: {
@@ -93,8 +99,9 @@ module.exports = ({
                 {
                     test: /\.(css|less)(\?.*)?$/,
                     use: [
-                        devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                         {
+                            loader:'style-loader'
+                        },                        {
                             loader: 'css-loader'
                         },
                         {
@@ -109,6 +116,26 @@ module.exports = ({
                             }
                         }
                     ]
+                },
+                {
+                    test: /\.(scss)(\?.*)?$/,
+                    use: [
+                        {
+                            loader:'style-loader'
+                        },                        {
+                            loader: 'css-loader'
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: postcss
+                        },
+                        {
+                            loader: "sass-loader",
+                            options: {
+                                data:varToSass(themer)
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -117,10 +144,10 @@ module.exports = ({
             fs: 'empty'
         },
         plugins: [
-            new MiniCssExtractPlugin({
-                filename: devMode ? '[name].css' : '[name].[hash].css',
-                chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
-            }),
+            // new MiniCssExtractPlugin({
+            //     filename: devMode ? '[name].css' : '[name].[hash].css',
+            //     chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
+            // }),
             new CleanWebpackPlugin([cleanDist], {
                 root: process.cwd(),
                 dangerouslyAllowCleanPatternsOutsideProject: true

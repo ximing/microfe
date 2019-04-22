@@ -29,6 +29,7 @@
         "@babel/preset-typescript": "^7.3.3",
         "@commitlint/cli": "^7.5.1",
         "@commitlint/config-conventional": "^7.5.0",
+        "cssnano": "^4.1.10",
         "eslint": "^5.13.0",
         "eslint-config-airbnb": "^17.0.0",
         "eslint-config-prettier": "^4.0.0",
@@ -41,11 +42,16 @@
         "husky": "^1.3.1",
         "jest": "^24.1.0",
         "lint-staged": "^8.1.3",
+        "node-sass-utils": "^1.1.2",
         "nyc": "^13.2.0",
+        "postcss-advanced-variables": "^3.0.0",
+        "postcss-nested": "^4.1.2",
         "prettier": "^1.16.4",
+        "sass-loader": "^7.1.0",
         "standard-version": "^4.4.0",
         "ts-loader": "^5.3.3",
-        "typescript": "^3.4.2"
+        "typescript": "^3.4.2",
+        "webpack-merge": "^4.2.1"
     },
     "husky": {
         "hooks": {
@@ -97,9 +103,11 @@
         "less-loader": "^4.1.0",
         "less-vars-to-js": "^1.3.0",
         "mini-css-extract-plugin": "^0.5.0",
+        "node-sass": "^4.11.0",
         "postcss": "^7.0.14",
         "postcss-clearfix": "^2.0.1",
         "postcss-loader": "^3.0.0",
+        "postcss-scss": "^2.0.0",
         "react-hot-loader": "^4.8.2",
         "style-loader": "^0.23.1",
         "url-loader": "^1.0.1",
@@ -108,7 +116,6 @@
         "webpack-dev-server": "^3.1.14",
         "webpack-format-messages": "^2.0.5",
         "webpack-manifest-plugin": "^2.0.4",
-        "webpack-merge": "^4.2.1",
         "worker-loader": "^2.0.0"
     },
     "gitHead": "b03049e431d3843cef720ab182b2f0eae5fd4756"
