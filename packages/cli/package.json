@@ -16,7 +16,8 @@
         "microfe-dev": "bin/microfe-dev.js"
     },
     "files": [
-        "lib"
+        "lib",
+        "bin"
     ],
     "scripts": {
         "build": "npm run tsc",
