@@ -4,6 +4,8 @@
 'use strict';
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpackMerge = require('webpack-merge');
+
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let env = process.env.NODE_ENV || 'development';
 const babel = require('./babel');
@@ -30,14 +32,15 @@ module.exports = ({
     themer = {},
     output,
     devtool,
-    resolve
+    resolve,
+    plugins = []
 } = {}) => {
     let cleanDist = output;
     if (typeof output !== 'string') {
         cleanDist = output.path;
     }
     console.log('cleanDist', cleanDist,varToSass(themer));
-    return {
+    return webpackMerge({
         devtool,
         module: {
             rules: [
@@ -160,5 +163,7 @@ module.exports = ({
             new webpack.ProvidePlugin({})
         ],
         externals
-    };
+    },{
+        plugins
+    }) ;
 };

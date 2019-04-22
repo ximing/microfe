@@ -6,7 +6,7 @@ const path = require('path');
 const webpackMmerge = require('webpack-merge');
 const common = require('./webpack.common.config');
 
-module.exports = ({ port, host, entry, library, externals, output, themer, devtool,resolve }) => {
+module.exports = ({ port, host, entry, library, externals, output, themer, devtool,resolve,plugins }) => {
     let outputObj = {};
     if (typeof output === 'string') {
         outputObj = {
@@ -25,7 +25,7 @@ module.exports = ({ port, host, entry, library, externals, output, themer, devto
             devMode: true,
             themer,
             output: outputObj,
-            devtool,resolve
+            devtool,resolve,plugins
         }),
         {
             mode: 'development',
@@ -53,8 +53,7 @@ module.exports = ({ port, host, entry, library, externals, output, themer, devto
                     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
                     'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
                 }
-            },
-            plugins: []
+            }
         }
     );
 };
