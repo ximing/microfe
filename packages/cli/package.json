@@ -1,6 +1,6 @@
 {
     "name": "@microfe/cli",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "> TODO: description",
     "author": "ximing <807754634@qq.com>",
     "homepage": "",
@@ -116,8 +116,8 @@
         "webpack-dev-server": "^3.1.14",
         "webpack-format-messages": "^2.0.5",
         "webpack-manifest-plugin": "^2.0.4",
-        "worker-loader": "^2.0.0",
-        "webpack-merge": "^4.2.1"
+        "webpack-merge": "^4.2.1",
+        "worker-loader": "^2.0.0"
     },
     "gitHead": "b03049e431d3843cef720ab182b2f0eae5fd4756"
 }
