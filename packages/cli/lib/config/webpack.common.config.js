@@ -10,6 +10,7 @@ const webpackMerge = require('webpack-merge');
 let env = process.env.NODE_ENV || 'development';
 const babel = require('./babel');
 const postcss = require('./postcss');
+
 const varToSass = function(themes){
     return Object.keys(themes).reduce(function(pre,key) {
         pre += `$${key}:${themes[key]};`;
@@ -33,13 +34,14 @@ module.exports = ({
     output,
     devtool,
     resolve,
-    plugins = []
+    plugins = [],
+    reactHotLoader= false
 } = {}) => {
     let cleanDist = output;
     if (typeof output !== 'string') {
         cleanDist = output.path;
     }
-    console.log('cleanDist', cleanDist,varToSass(themer));
+    console.log('cleanDist', cleanDist);
     return webpackMerge({
         devtool,
         module: {
@@ -56,7 +58,7 @@ module.exports = ({
                                 configFile: false,
                                 compact: false
                             },
-                            babel
+                            babel(reactHotLoader)
                         )
                     }
                 },
@@ -73,7 +75,7 @@ module.exports = ({
                 //           configFile: false,
                 //           compact: false,
                 //         },
-                //         babel
+                //         babel(reactHotLoader)
                 //       ),
                 //     },
                 //     {

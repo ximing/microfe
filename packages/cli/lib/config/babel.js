@@ -1,4 +1,4 @@
-module.exports = {
+const base = {
     presets: [
         [
             require('@babel/preset-env').default,
@@ -19,7 +19,7 @@ module.exports = {
         require('@babel/preset-react').default,
         require('@babel/preset-typescript').default
     ],
-    ignore: ['node_modules/**', 'dist'],
+    // ignore: ['node_modules/**'],
     plugins: [
         [
             require('babel-plugin-import').default,
@@ -58,4 +58,10 @@ module.exports = {
         require('@babel/plugin-proposal-do-expressions').default,
         require('@babel/plugin-proposal-function-bind').default
     ]
+}
+module.exports = (reactHotLoader=false)=>{
+    if(reactHotLoader){
+        base.plugins.push(require("react-hot-loader/babel"))
+    }
+    return base;
 };

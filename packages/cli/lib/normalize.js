@@ -4,7 +4,8 @@ let defaultConfig = {
     dev: {
         port: 9001,
         host: '127.0.0.1',
-        output: path.join(process.cwd(), 'lib')
+        output: path.join(process.cwd(), 'lib'),
+        reactHotLoader:true
     },
     build: {
         publicPath: '/public/',
@@ -41,10 +42,19 @@ module.exports = function(config, env) {
             build: Object.assign({}, defaultConfig.build, config.build)
         }
     );
-    customConfig.entry = path.resolve(process.cwd(), customConfig.entry);
     if (typeof customConfig.entry === 'string') {
         customConfig.entry = {
-            [customConfig.library]: customConfig.entry
+            [customConfig.library]: path.resolve(process.cwd(), customConfig.entry)
+        };
+    }else if(Array.isArray(customConfig.entry)){
+        customConfig.entry = {
+            [customConfig.library]: customConfig.entry.map(item=>{
+                if(item[0] === '.'){
+                    return path.resolve(process.cwd(), item)
+                }else{
+                    return item;
+                }
+            })
         };
     }
     const finailConfig = Object.assign({}, customConfig, customConfig[env]);
