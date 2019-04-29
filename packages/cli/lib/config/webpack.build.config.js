@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackMmerge = require('webpack-merge');
 const common = require('./webpack.common.config');
 
-module.exports = ({ entry, library, externals, publicPath, output, themer, devtool }) => {
+module.exports = ({ entry, library, externals, publicPath, output, themer, devtool,resolve,plugins }) => {
     let outputObj = {};
     if (typeof output === 'string') {
         outputObj = {
@@ -27,7 +27,9 @@ module.exports = ({ entry, library, externals, publicPath, output, themer, devto
             devMode: false,
             themer,
             output: outputObj,
-            devtool
+            devtool,
+            resolve,
+            plugins
         }),
         {
             mode: 'production',
@@ -38,8 +40,7 @@ module.exports = ({ entry, library, externals, publicPath, output, themer, devto
             },
             context: __dirname,
             target: 'web',
-            stats: 'errors-only',
-            plugins: []
+            stats: 'errors-only'
         }
     );
 };

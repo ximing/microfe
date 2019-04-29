@@ -9,4 +9,4 @@ program.usage('[config-path]');
 program.parse(process.argv);
 
 const configPath = program.args[0] || 'microfe.js';
-dev(normalize(findConfig(configPath), 'build'));
+build(normalize(findConfig(configPath), 'build'));

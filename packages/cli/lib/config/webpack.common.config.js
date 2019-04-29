@@ -4,10 +4,19 @@
 'use strict';
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpackMerge = require('webpack-merge');
+
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let env = process.env.NODE_ENV || 'development';
 const babel = require('./babel');
 const postcss = require('./postcss');
+
+const varToSass = function(themes){
+    return Object.keys(themes).reduce(function(pre,key) {
+        pre += `$${key}:${themes[key]};`;
+        return pre;
+    },'')
+}
 
 module.exports = ({
     externals = [
@@ -23,14 +32,17 @@ module.exports = ({
     devMode = false,
     themer = {},
     output,
-    devtool
+    devtool,
+    resolve,
+    plugins = [],
+    reactHotLoader= false
 } = {}) => {
     let cleanDist = output;
     if (typeof output !== 'string') {
         cleanDist = output.path;
     }
     console.log('cleanDist', cleanDist);
-    return {
+    return webpackMerge({
         devtool,
         module: {
             rules: [
@@ -46,7 +58,7 @@ module.exports = ({
                                 configFile: false,
                                 compact: false
                             },
-                            babel
+                            babel(reactHotLoader)
                         )
                     }
                 },
@@ -63,7 +75,7 @@ module.exports = ({
                 //           configFile: false,
                 //           compact: false,
                 //         },
-                //         babel
+                //         babel(reactHotLoader)
                 //       ),
                 //     },
                 //     {
@@ -92,8 +104,9 @@ module.exports = ({
                 {
                     test: /\.(css|less)(\?.*)?$/,
                     use: [
-                        devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                         {
+                            loader:'style-loader'
+                        },                        {
                             loader: 'css-loader'
                         },
                         {
@@ -108,20 +121,38 @@ module.exports = ({
                             }
                         }
                     ]
+                },
+                {
+                    test: /\.(scss)(\?.*)?$/,
+                    use: [
+                        {
+                            loader:'style-loader'
+                        },                        {
+                            loader: 'css-loader'
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: postcss
+                        },
+                        {
+                            loader: "sass-loader",
+                            options: {
+                                data:varToSass(themer)
+                            }
+                        }
+                    ]
                 }
             ]
         },
-        resolve: {
-            extensions: ['.tsx', '.ts', '.js', '.jsx', '.json']
-        },
+        resolve,
         node: {
             fs: 'empty'
         },
         plugins: [
-            new MiniCssExtractPlugin({
-                filename: devMode ? '[name].css' : '[name].[hash].css',
-                chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
-            }),
+            // new MiniCssExtractPlugin({
+            //     filename: devMode ? '[name].css' : '[name].[hash].css',
+            //     chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
+            // }),
             new CleanWebpackPlugin([cleanDist], {
                 root: process.cwd(),
                 dangerouslyAllowCleanPatternsOutsideProject: true
@@ -134,5 +165,7 @@ module.exports = ({
             new webpack.ProvidePlugin({})
         ],
         externals
-    };
+    },{
+        plugins
+    }) ;
 };
