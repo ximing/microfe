@@ -40,7 +40,8 @@ module.exports = ({ entry, library, externals, publicPath, output, themer, devto
             },
             context: __dirname,
             target: 'web',
-            stats: 'errors-only'
+            stats: 'errors-only',
+            plugins: [new webpack.HashedModuleIdsPlugin()],
         }
     );
 };

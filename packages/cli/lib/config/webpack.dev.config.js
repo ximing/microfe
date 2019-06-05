@@ -2,6 +2,7 @@
  * Created by ximing on 2018/8/3.
  */
 'use strict';
+const webpack = require('webpack');
 const path = require('path');
 const webpackMmerge = require('webpack-merge');
 const common = require('./webpack.common.config');
@@ -53,7 +54,8 @@ module.exports = ({ port, host, entry, library, externals, output, themer, devto
                     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
                     'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
                 }
-            }
+            },
+            plugins: [new webpack.NamedModulesPlugin(), new webpack.HotModuleReplacementPlugin()],
         }
     );
 };
