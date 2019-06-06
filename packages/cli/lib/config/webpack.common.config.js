@@ -153,14 +153,25 @@ module.exports = ({
             },
             optimization: {
                 runtimeChunk: {
-                    name: 'runtime'
+                    name: (entrypoint) => `runtime~${entrypoint.name}`
                 },
                 splitChunks: {
+                    chunks: 'all',
+                    maxInitialRequests: Infinity,
+                    minSize: 0,
                     cacheGroups: {
-                        commons: {
+                        vendor: {
                             test: /[\\/]node_modules[\\/]/,
-                            name: 'vendor',
-                            chunks: 'all'
+                            name(module) {
+                                // get the name. E.g. node_modules/packageName/not/this/part.js
+                                // or node_modules/packageName
+                                const packageName = module.context.match(
+                                    /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+                                )[1];
+
+                                // npm package names are URL-safe, but some servers don't like @ symbols
+                                return `npm.${packageName.replace('@', '')}`;
+                            }
                         }
                     }
                 }
@@ -174,7 +185,6 @@ module.exports = ({
                     root: process.cwd(),
                     dangerouslyAllowCleanPatternsOutsideProject: true
                 }),
-                new ManifestPlugin(),
                 new webpack.DefinePlugin({
                     'process.env': {
                         NODE_ENV: JSON.stringify(env)

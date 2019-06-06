@@ -7,7 +7,19 @@ const path = require('path');
 const webpackMmerge = require('webpack-merge');
 const common = require('./webpack.common.config');
 
-module.exports = ({ port, host, entry, library, externals, output, themer, devtool,resolve,plugins,reactHotLoader }) => {
+module.exports = ({
+    port,
+    host,
+    entry,
+    library,
+    externals,
+    output,
+    themer,
+    devtool,
+    resolve,
+    plugins,
+    reactHotLoader
+}) => {
     let outputObj = {};
     if (typeof output === 'string') {
         outputObj = {
@@ -26,7 +38,10 @@ module.exports = ({ port, host, entry, library, externals, output, themer, devto
             devMode: true,
             themer,
             output: outputObj,
-            devtool,resolve,plugins,reactHotLoader
+            devtool,
+            resolve,
+            plugins,
+            reactHotLoader
         }),
         {
             mode: 'development',
@@ -55,7 +70,7 @@ module.exports = ({ port, host, entry, library, externals, output, themer, devto
                     'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
                 }
             },
-            plugins: [new webpack.NamedModulesPlugin(), new webpack.HotModuleReplacementPlugin()],
+            plugins: [new webpack.HotModuleReplacementPlugin()]
         }
     );
 };

@@ -2,8 +2,8 @@
  * Created by ximing on 2018/8/3.
  */
 'use strict';
+const webpack = require('webpack');
 const path = require('path');
-const ManifestPlugin = require('webpack-manifest-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackMmerge = require('webpack-merge');
 const common = require('./webpack.common.config');
@@ -25,7 +25,7 @@ module.exports = ({
             path: output,
             library: library,
             libraryTarget: 'amd',
-            filename: `${library}.[chunkhash].js`,
+            filename: `[name].[chunkhash].js`,
             publicPath
         };
     } else {
