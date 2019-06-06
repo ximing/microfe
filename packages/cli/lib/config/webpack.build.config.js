@@ -8,14 +8,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackMmerge = require('webpack-merge');
 const common = require('./webpack.common.config');
 
-module.exports = ({ entry, library, externals, publicPath, output, themer, devtool,resolve,plugins }) => {
+module.exports = ({
+    entry,
+    library,
+    externals,
+    publicPath,
+    output,
+    themer,
+    devtool,
+    resolve,
+    plugins
+}) => {
     let outputObj = {};
     if (typeof output === 'string') {
         outputObj = {
             path: output,
             library: library,
             libraryTarget: 'amd',
-            filename: `${library}.[hash].js`,
+            filename: `${library}.[chunkhash].js`,
             publicPath
         };
     } else {
@@ -41,7 +51,7 @@ module.exports = ({ entry, library, externals, publicPath, output, themer, devto
             context: __dirname,
             target: 'web',
             stats: 'errors-only',
-            plugins: [new webpack.HashedModuleIdsPlugin()],
+            plugins: [new webpack.HashedModuleIdsPlugin()]
         }
     );
 };
