@@ -26,7 +26,7 @@ module.exports = ({
             path: output,
             library,
             libraryTarget: 'amd',
-            filename: `${library}.js`,
+            filename: `[name].js`,
             publicPath: `http://${host}:${port}/`
         };
     } else {

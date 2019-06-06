@@ -51,7 +51,7 @@ module.exports = ({
             context: __dirname,
             target: 'web',
             stats: 'errors-only',
-            plugins: [new webpack.HashedModuleIdsPlugin()]
+            plugins: [new webpack.HashedModuleIdsPlugin(), new webpack.NamedChunksPlugin()]
         }
     );
 };
