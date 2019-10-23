@@ -39,7 +39,7 @@ const base = {
         require('@babel/plugin-transform-runtime').default,
         require('@babel/plugin-syntax-dynamic-import').default,
         require('@babel/plugin-syntax-import-meta').default,
-        require('@babel/plugin-proposal-class-properties').default,
+        [require('@babel/plugin-proposal-class-properties').default, { loose: true }],
         require('@babel/plugin-proposal-json-strings').default,
         require('@babel/plugin-proposal-function-sent').default,
         require('@babel/plugin-proposal-export-namespace-from').default,
