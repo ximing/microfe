@@ -18,7 +18,8 @@ module.exports = ({
     devtool,
     resolve,
     plugins,
-    reactHotLoader
+    reactHotLoader,
+    babelSetting
 }) => {
     let outputObj = {};
     if (typeof output === 'string') {
@@ -41,7 +42,8 @@ module.exports = ({
             devtool,
             resolve,
             plugins,
-            reactHotLoader
+            reactHotLoader,
+            babelSetting
         }),
         {
             mode: 'development',

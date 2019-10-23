@@ -17,7 +17,8 @@ module.exports = ({
     themer,
     devtool,
     resolve,
-    plugins
+    plugins,
+    babelSetting
 }) => {
     let outputObj = {};
     if (typeof output === 'string') {
@@ -39,7 +40,8 @@ module.exports = ({
             output: outputObj,
             devtool,
             resolve,
-            plugins
+            plugins,
+            babelSetting
         }),
         {
             mode: 'production',

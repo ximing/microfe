@@ -59,9 +59,15 @@ const base = {
         require('@babel/plugin-proposal-function-bind').default
     ]
 }
-module.exports = (reactHotLoader=false)=>{
+module.exports = (reactHotLoader=false,babelSetting={})=>{
     if(reactHotLoader){
         base.plugins.push(require("react-hot-loader/babel"))
+    }
+    if(babelSetting && babelSetting.plugins){
+        base.plugins = base.plugins.concat(babelSetting.plugins)
+    }
+    if(babelSetting && babelSetting.presets){
+        base.presets = base.presets.concat(babelSetting.presets)
     }
     return base;
 };

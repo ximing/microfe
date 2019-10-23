@@ -35,7 +35,8 @@ module.exports = ({
     devtool,
     resolve,
     plugins = [],
-    reactHotLoader = false
+    reactHotLoader = false,
+    babelSetting = {}
 } = {}) => {
     let cleanDist = output;
     if (typeof output !== 'string') {
@@ -59,7 +60,7 @@ module.exports = ({
                                     configFile: false,
                                     compact: false
                                 },
-                                babel(reactHotLoader)
+                                babel(reactHotLoader, babelSetting)
                             )
                         }
                     },
