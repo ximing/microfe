@@ -22,13 +22,6 @@ const base = {
     // ignore: ['node_modules/**'],
     plugins: [
         [
-            require('babel-plugin-import').default,
-            {
-                libraryName: 'antd',
-                style: true
-            }
-        ],
-        [
             require('@babel/plugin-proposal-decorators').default,
             {
                 legacy: true
